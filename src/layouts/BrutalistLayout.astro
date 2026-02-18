@@ -2,6 +2,7 @@
 import PixModal from '../components/PixModal.astro';
 
 const { title } = Astro.props;
+
 const socialLinks = [
   { name: 'LinkedIn', url: 'https://www.linkedin.com/in/denilsonso/', icon: 'fa-linkedin' },
   { name: 'GitHub', url: 'https://github.com/denilsude', icon: 'fa-github' },
@@ -10,7 +11,7 @@ const socialLinks = [
 ---
 
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" class="bg-yellow-400">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width" />
@@ -18,12 +19,24 @@ const socialLinks = [
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <style is:global>
     :root {
-      --bg: #ffffff;
+      --bg: #facc15; /* yellow-400 */
       --text: #000000;
       --accent: #ff5e5b;
     }
-    
-    .coffee-button {
+
+    /* Estilização Scrollbar Brutalista */
+    ::-webkit-scrollbar {
+      width: 12px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #000;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #fff;
+      border: 3px solid #000;
+    }
+
+    .pix-button {
       position: fixed;
       bottom: 2rem;
       right: 2rem;
@@ -42,18 +55,21 @@ const socialLinks = [
       z-index: 40;
     }
 
-    .coffee-button:hover {
+    .pix-button:hover {
       transform: translate(4px, 4px);
       box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
     }
   </style>
 </head>
-<body class="bg-white text-black min-h-screen flex flex-col">
-  <nav class="border-b-4 border-black p-4 flex justify-between items-center bg-white sticky top-0 z-50">
-    <a href="/" class="text-2xl font-black uppercase tracking-tighter">Denilson Sude</a>
-    <div class="flex gap-6">
-      <a href="/about" class="font-bold uppercase hover:underline underline-offset-4">Sobre</a>
-      <a href="/projects" class="font-bold uppercase hover:underline underline-offset-4">Projetos</a>
+<body class="bg-yellow-400 text-black min-h-screen flex flex-col font-sans selection:bg-black selection:text-yellow-400">
+  
+  <nav class="border-b-8 border-black p-6 flex justify-between items-center bg-white sticky top-0 z-50">
+    <a href="/" class="text-3xl font-black uppercase tracking-tighter hover:italic transition-all">
+      Denilson Sude
+    </a>
+    <div class="flex gap-8">
+      <a href="/about" class="text-xl font-black uppercase hover:underline underline-offset-8">Sobre</a>
+      <a href="/projects" class="text-xl font-black uppercase hover:underline underline-offset-8">Projetos</a>
     </div>
   </nav>
 
@@ -61,34 +77,32 @@ const socialLinks = [
     <slot />
   </div>
 
-  <a href="#pix-modal" class="coffee-button">
-    <div class="coffee-icon-wrapper">
-      <i class="fa-solid fa-qrcode text-2xl"></i>
-    </div>
+  <a href="#pix-modal" class="pix-button">
+    <i class="fa-solid fa-qrcode text-2xl"></i>
     <span class="coffee-text">Apoie com PIX</span>
   </a>
 
-  <footer class="border-t-4 border-black p-8 bg-white mt-12">
+  <footer class="border-t-8 border-black p-12 bg-black text-white mt-12">
     <div class="flex flex-col md:flex-row justify-between items-center gap-8 max-w-7xl mx-auto w-full">
       
-      <div class="flex gap-6">
+      <div class="flex gap-8 text-4xl">
         {socialLinks.map(link => (
-          <a href={link.url} target="_blank" aria-label={link.name} class="text-3xl hover:text-accent transition-colors">
-            <i class={`fa-brands ${link.icon}`}></i>
+          <a href={link.url} target="_blank" aria-label={link.name} class="hover:text-yellow-400 transition-colors">
+            <i class={`fa-brands ${link.icon === 'fa-code' ? 'fa-solid fa-code' : link.icon}`}></i>
           </a>
         ))}
       </div>
 
       <div class="text-center">
-        <p class="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-1">Engenharia e Arquitetura</p>
-        <div class="font-black uppercase border-2 border-black px-4 py-1 bg-yellow-300 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+        <p class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">Architecture & Code</p>
+        <div class="font-black uppercase border-2 border-white px-6 py-2 bg-white text-black shadow-[6px_6px_0px_0px_rgba(255,255,255,0.3)]">
           Powered by Denilson Sude
         </div>
       </div>
 
       <div class="text-right flex flex-col items-end">
-        <span class="text-[10px] font-bold uppercase text-gray-500">Operação por:</span>
-        <a href="https://manditecnologia.com.br/" target="_blank" class="font-black hover:underline text-lg uppercase">
+        <span class="text-xs font-bold uppercase opacity-60 mb-1">Operado por:</span>
+        <a href="https://manditecnologia.com.br/" target="_blank" class="text-2xl font-black hover:text-yellow-400 uppercase tracking-tighter transition-colors">
           Mandi Tecnologia
         </a>
       </div>
@@ -97,5 +111,6 @@ const socialLinks = [
   </footer>
 
   <PixModal />
+
 </body>
 </html>

@@ -11,7 +11,7 @@ const socialLinks = [
 ---
 
 <!DOCTYPE html>
-<html lang="pt-br" class="bg-yellow-400">
+<html lang="pt-br" class="bg-sky-50">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width" />
@@ -19,16 +19,22 @@ const socialLinks = [
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <style is:global>
     :root {
-      --bg: #facc15;
+      /* Mude a cor aqui para alterar o tema */
+      --theme-bg: #f0f9ff; /* Azul bem claro (sky-50) */
+      --theme-accent: #0ea5e9; /* Azul principal */
       --text: #000000;
-      --accent: #ff5e5b;
+      --white: #ffffff;
+    }
+
+    body {
+      background-color: var(--theme-bg);
     }
 
     .pix-button {
       position: fixed;
       bottom: 2rem;
-      right: 2rem;
-      background: white;
+      left: 2rem; /* Movido para a esquerda para não cobrir a Mandi Tecnologia */
+      background: var(--white);
       border: 4px solid black;
       padding: 1rem;
       display: flex;
@@ -46,10 +52,12 @@ const socialLinks = [
     .pix-button:hover {
       transform: translate(4px, 4px);
       box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+      background-color: var(--theme-accent);
+      color: white;
     }
   </style>
 </head>
-<body class="bg-yellow-400 text-black min-h-screen flex flex-col font-sans selection:bg-black selection:text-yellow-400">
+<body class="text-black min-h-screen flex flex-col font-sans selection:bg-black selection:text-white">
   
   <nav class="border-b-8 border-black p-6 flex justify-between items-center bg-white sticky top-0 z-50">
     <a href="/" class="text-3xl font-black uppercase tracking-tighter hover:italic transition-all">
@@ -75,7 +83,7 @@ const socialLinks = [
       
       <div class="flex gap-8 text-4xl">
         {socialLinks.map(link => (
-          <a href={link.url} target="_blank" aria-label={link.name} class="hover:text-yellow-400 transition-colors">
+          <a href={link.url} target="_blank" aria-label={link.name} class="hover:text-sky-400 transition-colors">
             <i class={`fa-brands ${link.icon === 'fa-code' ? 'fa-solid fa-code' : link.icon}`}></i>
           </a>
         ))}
@@ -90,7 +98,7 @@ const socialLinks = [
 
       <div class="text-right flex flex-col items-end">
         <span class="text-xs font-bold uppercase opacity-60 mb-1">Operado por:</span>
-        <a href="https://manditecnologia.com.br/" target="_blank" class="text-2xl font-black hover:text-yellow-400 uppercase tracking-tighter transition-colors">
+        <a href="https://manditecnologia.com.br/" target="_blank" class="text-2xl font-black hover:text-sky-400 uppercase tracking-tighter transition-colors">
           Mandi Tecnologia
         </a>
       </div>

@@ -1,26 +1,15 @@
 {
-  "name": "levi-lucena-professional-blog",
-  "version": "2.1.0",
-  "description": "Blog pessoal profissional de Levi Lucena desenvolvido com Astro - Engenheiro de Software & Especialista em IA com foco em projetos e tecnologias",
+  "name": "denilson-sude-portfolio",
+  "version": "1.0.0",
+  "description": "Portfólio profissional de Denilson Oliveira da Silva - Desenvolvedor Full Stack especializado em Python, Node.js e integrações bancárias.",
   "main": "index.js",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
-    "test": "echo \"Nenhum teste configurado\" && exit 0"
+    "preview": "astro preview"
   },
-  "keywords": [
-    "portfolio",
-    "developer",
-    "vscode",
-    "ide",
-    "website",
-    "html",
-    "css",
-    "javascript"
-  ],
-  "author": "DevFulano",
+  "author": "Denilson Sude",
   "license": "MIT",
   "devDependencies": {
     "@astrojs/tailwind": "^6.0.2",
@@ -30,13 +19,5 @@
   },
   "dependencies": {
     "astro": "^5.14.1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/LeviLucena/portfolio.git"
-  },
-  "bugs": {
-    "url": "https://github.com/LeviLucena/portfolio/issues"
-  },
-  "homepage": "https://github.com/LeviLucena/portfolio#readme"
+  }
 }

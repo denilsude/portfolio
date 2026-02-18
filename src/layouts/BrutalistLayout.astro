@@ -19,21 +19,9 @@ const socialLinks = [
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <style is:global>
     :root {
-      --bg: #facc15; /* yellow-400 */
+      --bg: #facc15;
       --text: #000000;
       --accent: #ff5e5b;
-    }
-
-    /* Estilização Scrollbar Brutalista */
-    ::-webkit-scrollbar {
-      width: 12px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #000;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #fff;
-      border: 3px solid #000;
     }
 
     .pix-button {
@@ -65,7 +53,7 @@ const socialLinks = [
   
   <nav class="border-b-8 border-black p-6 flex justify-between items-center bg-white sticky top-0 z-50">
     <a href="/" class="text-3xl font-black uppercase tracking-tighter hover:italic transition-all">
-      Denilson Sude
+      Denilson Oliveira
     </a>
     <div class="flex gap-8">
       <a href="/about" class="text-xl font-black uppercase hover:underline underline-offset-8">Sobre</a>
@@ -79,7 +67,7 @@ const socialLinks = [
 
   <a href="#pix-modal" class="pix-button">
     <i class="fa-solid fa-qrcode text-2xl"></i>
-    <span class="coffee-text">Apoie com PIX</span>
+    <span class="font-black uppercase">Apoie com PIX</span>
   </a>
 
   <footer class="border-t-8 border-black p-12 bg-black text-white mt-12">
@@ -96,7 +84,7 @@ const socialLinks = [
       <div class="text-center">
         <p class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">Architecture & Code</p>
         <div class="font-black uppercase border-2 border-white px-6 py-2 bg-white text-black shadow-[6px_6px_0px_0px_rgba(255,255,255,0.3)]">
-          Powered by Denilson Sude
+          Powered by Denilson Oliveira
         </div>
       </div>
 
@@ -111,6 +99,5 @@ const socialLinks = [
   </footer>
 
   <PixModal />
-
 </body>
 </html>

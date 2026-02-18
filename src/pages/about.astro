@@ -11,7 +11,7 @@ const techStack = [
 ];
 ---
 
-<BrutalistLayout title="Sobre - Denilson Sude">
+<BrutalistLayout title="Sobre - Denilson Oliveira">
   <main class="p-8 max-w-4xl mx-auto">
     <h1 class="text-6xl font-black mb-8 uppercase italic">Sobre Mim</h1>
     
@@ -20,26 +20,14 @@ const techStack = [
         Sou <strong>Denilson Oliveira da Silva</strong>, desenvolvedor Full Stack com foco em arquiteturas SaaS, alta disponibilidade e automação de processos financeiros.
       </p>
       <p class="text-lg">
-        Atualmente graduando em Ciência da Computação pela <strong>PUC-GO</strong>, trabalho na modernização de sistemas corporativos e infraestrutura tecnológica.
+        Atualmente graduando em Ciência da Computação pela <strong>PUC-GO</strong>, trabalho na modernização de sistemas corporativos e infraestrutura tecnológica pela <strong>Mandi Tecnologia</strong>.
       </p>
     </section>
 
-    <h2 class="text-4xl font-black mb-6 uppercase tracking-tighter text-accent">Mandi Tecnologia</h2>
-    <div class="border-4 border-black p-6 bg-black text-white shadow-[8px_8px_0px_0px_rgba(255,94,91,1)] mb-12">
-      <h3 class="text-2xl font-black uppercase mb-2">MANDI TECNOLOGIA DA INFORMAÇÃO LTDA</h3>
-      <p class="font-bold mb-4 italic text-yellow-300">CNPJ: 64.714.081/0001-74</p>
-      <p class="text-lg mb-6 leading-tight">
-        Especializada em integração de APIs bancárias (Sicoob/mTLS), sincronização de ERPs (Omie) e desenvolvimento de soluções customizadas para gestão empresarial.
-      </p>
-      <a href="https://manditecnologia.com.br/" target="_blank" class="inline-block bg-accent text-white px-6 py-2 font-black border-2 border-white hover:bg-white hover:text-black transition-all uppercase">
-        Ver Site Oficial
-      </a>
-    </div>
-
-    <h2 class="text-4xl font-black mb-6 uppercase">Habilidades Técnicas</h2>
+    <h2 class="text-4xl font-black mb-6 uppercase tracking-tighter">Habilidades Técnicas</h2>
     <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
       {techStack.map(tech => (
-        <div class="border-2 border-black p-4 flex items-center gap-3 bg-white hover:bg-yellow-50 transition-colors">
+        <div class="border-2 border-black p-4 flex items-center gap-3 bg-white hover:bg-black hover:text-white transition-colors">
           <i class={`${tech.icon} text-2xl`}></i>
           <span class="font-bold uppercase text-xs tracking-widest">{tech.name}</span>
         </div>

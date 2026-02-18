@@ -23,7 +23,7 @@ Este portfólio demonstra domínio técnico em:
 
 ##  Projetos em Destaque
 - **Sistema de Gestão de Compras (SaaS):** Fluxo financeiro complexo com baixa automática via Webhooks.
-- **Kallizoe E-commerce:** Plataforma de vendas escalável.
+- **Kallizoe E-commerce:** [kallizoe](https://kallizoe.com.br/) Plataforma de vendas escalável. 
 - **Validador Sudoku:** Engenharia de algoritmos integrando C e Python.
 
 ---

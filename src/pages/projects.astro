@@ -1,57 +1,366 @@
-﻿---
+---
 import BrutalistLayout from '../layouts/BrutalistLayout.astro';
 
 const projects = [
   {
-    title: "Sistema de Gestão de Compras (SaaS)",
-    description: "Plataforma corporativa para controle de fluxo de caixa e aprovações. Integração nativa com API Sicoob (mTLS) e ERP Omie para conciliação automática.",
+    title: "Gestão TI",
+    description: "Sistema de gestão de TI para controle de ativos, service desk e infraestrutura tecnológica. Plataforma centralizada para gerenciamento de recursos, chamados e relatórios operacionais.",
+    tags: ["TypeScript", "Next.js", "PostgreSQL", "Prisma"],
+    link: "https://github.com/denilsude/gestao-ti",
+    icon: "fa-solid fa-server",
+    accent: "#38bdf8",
+    featured: true,
+  },
+  {
+    title: "Sistema de Gestão de Compras",
+    description: "Plataforma corporativa para controle de fluxo de caixa e aprovações. Integração nativa com API Sicoob (mTLS) e ERP Omie para conciliação financeira automática.",
     tags: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Docker"],
-    link: "https://github.com/denilsude"
+    link: "https://github.com/denilsude",
+    icon: "fa-solid fa-cart-shopping",
+    accent: "#818cf8",
+    featured: true,
   },
   {
     title: "Kallizoe E-commerce",
-    description: "Plataforma de vendas online com foco em performance e experiência do usuário. Implementação de fluxos de checkout e gestão de inventário.",
+    description: "Plataforma de vendas online com foco em performance e experiência do usuário. Implementação de fluxos de checkout otimizados e gestão de inventário em tempo real.",
     tags: ["React", "Node.js", "Tailwind CSS", "API Integration"],
-    link: "https://github.com/denilsude"
+    link: "https://github.com/denilsude",
+    icon: "fa-solid fa-bag-shopping",
+    accent: "#a78bfa",
   },
   {
     title: "Vibe Downloader",
-    description: "Aplicação full stack para download de mídias, com sistema de autenticação e histórico de usuários.",
+    description: "Aplicação full stack para download de mídias com sistema de autenticação, histórico personalizado por usuário e gerenciamento de filas de download.",
     tags: ["Python", "Flask", "JavaScript", "SQLite"],
-    link: "https://github.com/denilsude/vibedownloader"
+    link: "https://github.com/denilsude/vibedownloader",
+    icon: "fa-solid fa-download",
+    accent: "#34d399",
   },
   {
     title: "Validador de Sudoku",
-    description: "Algoritmo de validação de matrizes de Sudoku desenvolvido para alta performance, integrando C com interface Python.",
+    description: "Algoritmo de validação de matrizes de Sudoku desenvolvido para alta performance, integrando módulo C compilado via ctypes com interface web em Python/Flask.",
     tags: ["C", "Python", "Flask", "Algorithms"],
-    link: "https://github.com/denilsude/validador_sudoku"
-  }
+    link: "https://github.com/denilsude/validador_sudoku",
+    icon: "fa-solid fa-table-cells",
+    accent: "#fb923c",
+  },
 ];
 ---
 
 <BrutalistLayout title="Projetos - Denilson Sude">
-  <main class="p-8 max-w-6xl mx-auto">
-    <h1 class="text-6xl font-black mb-12 uppercase italic">Projetos</h1>
-    
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      {projects.map(project => (
-        <div class="border-4 border-black p-6 bg-white shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all">
-          <h2 class="text-3xl font-black mb-4 uppercase">{project.title}</h2>
-          <p class="text-lg mb-6 font-medium leading-tight">{project.description}</p>
-          
-          <div class="flex flex-wrap gap-2 mb-6">
+  <main class="max-w-6xl mx-auto px-6 py-16">
+
+    <!-- ─── Page header ─── -->
+    <div class="page-header">
+      <p class="page-eyebrow">ls -la ./projects</p>
+      <h1 class="page-title">Projetos</h1>
+      <div class="title-bar"></div>
+      <p class="page-sub">{projects.length} projetos · Full Stack · Open Source</p>
+    </div>
+
+    <!-- ─── Featured badge row ─── -->
+    <div class="featured-row">
+      <span class="featured-badge">
+        <i class="fa-solid fa-star"></i>
+        Destaque
+      </span>
+    </div>
+
+    <!-- ─── Projects grid ─── -->
+    <div class="projects-grid">
+      {projects.map((project) => (
+        <article class="project-card" style={`--card-accent: ${project.accent};`}>
+
+          <!-- Top bar accent -->
+          <div class="card-top-bar"></div>
+
+          <!-- Header -->
+          <div class="project-header">
+            <div class="project-icon-wrap">
+              <i class={`${project.icon} project-icon`}></i>
+            </div>
+            <div class="project-actions">
+              {project.featured && (
+                <span class="featured-dot" title="Projeto em destaque">
+                  <i class="fa-solid fa-star"></i>
+                </span>
+              )}
+              <a href={project.link} target="_blank" class="icon-btn" title="Ver no GitHub">
+                <i class="fa-brands fa-github"></i>
+              </a>
+              <a href={project.link} target="_blank" class="icon-btn" title="Abrir">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Content -->
+          <div class="project-content">
+            <h2 class="project-title">{project.title}</h2>
+            <p class="project-desc">{project.description}</p>
+          </div>
+
+          <!-- Tags -->
+          <div class="project-tags">
             {project.tags.map(tag => (
-              <span class="border-2 border-black px-2 py-1 text-xs font-bold uppercase bg-gray-100">
-                {tag}
-              </span>
+              <span class="tag">{tag}</span>
             ))}
           </div>
-          
-          <a href={project.link} target="_blank" class="inline-block border-4 border-black px-6 py-2 font-black uppercase bg-black text-white hover:bg-white hover:text-black transition-colors">
-            Ver Código
-          </a>
-        </div>
+
+          <!-- Footer link -->
+          <div class="project-footer">
+            <a href={project.link} target="_blank" class="project-link">
+              <i class="fa-brands fa-github"></i>
+              Ver no GitHub
+              <i class="fa-solid fa-arrow-right arrow-icon"></i>
+            </a>
+          </div>
+
+        </article>
       ))}
     </div>
+
+    <!-- ─── More on GitHub ─── -->
+    <div class="more-section">
+      <p class="more-text">Veja todos os projetos no GitHub</p>
+      <a href="https://github.com/denilsude" target="_blank" class="btn-primary">
+        <i class="fa-brands fa-github"></i>
+        github.com/denilsude
+      </a>
+    </div>
+
   </main>
 </BrutalistLayout>
+
+<style>
+  /* ── Page header ── */
+  .page-header { margin-bottom: 2rem; }
+
+  .page-eyebrow {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #38bdf8;
+    margin-bottom: 0.6rem;
+  }
+
+  .page-title {
+    font-size: clamp(2.5rem, 6vw, 3.75rem);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+  }
+
+  .title-bar {
+    width: 3.5rem;
+    height: 3px;
+    border-radius: 9999px;
+    background: linear-gradient(to right, #38bdf8, #818cf8);
+    margin-bottom: 0.75rem;
+  }
+
+  .page-sub {
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ── Featured row ── */
+  .featured-row {
+    margin-bottom: 1.5rem;
+  }
+
+  .featured-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(250, 204, 21, 0.08);
+    border: 1px solid rgba(250, 204, 21, 0.2);
+    color: #facc15;
+  }
+
+  /* ── Projects grid ── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+    margin-bottom: 4rem;
+  }
+
+  /* ── Project card ── */
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .project-card:hover {
+    border-color: var(--card-accent);
+    transform: translateY(-5px);
+    box-shadow: 0 24px 48px rgba(0,0,0,0.3), 0 0 0 1px var(--card-accent);
+  }
+
+  .card-top-bar {
+    height: 3px;
+    background: linear-gradient(to right, var(--card-accent), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .project-card:hover .card-top-bar {
+    opacity: 1;
+  }
+
+  /* ── Project header ── */
+  .project-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 1.25rem 1.25rem 0;
+  }
+
+  .project-icon-wrap {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  .project-card:hover .project-icon-wrap {
+    background: rgba(255,255,255,0.07);
+    border-color: var(--card-accent);
+  }
+
+  .project-icon {
+    font-size: 1rem;
+    color: var(--card-accent);
+  }
+
+  .project-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+  }
+
+  .featured-dot {
+    font-size: 0.6rem;
+    color: #facc15;
+    padding: 0.25rem;
+  }
+
+  .icon-btn {
+    width: 1.875rem;
+    height: 1.875rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted2);
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: all 0.2s ease;
+  }
+
+  .icon-btn:hover {
+    border-color: rgba(255,255,255,0.2);
+    color: var(--text);
+    background: rgba(255,255,255,0.05);
+  }
+
+  /* ── Project content ── */
+  .project-content {
+    padding: 1.25rem;
+    flex: 1;
+  }
+
+  .project-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.625rem;
+    letter-spacing: -0.01em;
+    transition: color 0.2s;
+  }
+
+  .project-card:hover .project-title {
+    color: var(--card-accent);
+  }
+
+  .project-desc {
+    font-size: 0.82rem;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+
+  /* ── Tags ── */
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    padding: 0 1.25rem 1.25rem;
+  }
+
+  /* ── Project footer ── */
+  .project-footer {
+    padding: 0.875rem 1.25rem;
+    border-top: 1px solid var(--border-muted);
+  }
+
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .project-card:hover .project-link {
+    color: var(--card-accent);
+  }
+
+  .arrow-icon {
+    font-size: 0.65rem;
+    transition: transform 0.2s ease;
+  }
+
+  .project-card:hover .arrow-icon {
+    transform: translateX(3px);
+  }
+
+  /* ── More section ── */
+  .more-section {
+    text-align: center;
+    padding: 3rem;
+    border: 1px dashed var(--border);
+    border-radius: 16px;
+    background: var(--card);
+  }
+
+  .more-text {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 1.25rem;
+  }
+</style>

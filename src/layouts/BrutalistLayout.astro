@@ -1,7 +1,12 @@
-﻿---
+---
 import PixModal from '../components/PixModal.astro';
 
 const { title } = Astro.props;
+
+const navLinks = [
+  { href: '/about', label: 'Sobre' },
+  { href: '/projects', label: 'Projetos' },
+];
 
 const socialLinks = [
   { name: 'LinkedIn', url: 'https://www.linkedin.com/in/denilsonso/', icon: 'fa-linkedin' },
@@ -11,98 +16,259 @@ const socialLinks = [
 ---
 
 <!DOCTYPE html>
-<html lang="pt-br" class="bg-sky-50">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css" />
   <style is:global>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     :root {
-      /* Mude a cor aqui para alterar o tema */
-      --theme-bg: #f0f9ff; /* Azul bem claro (sky-50) */
-      --theme-accent: #0ea5e9; /* Azul principal */
-      --text: #000000;
-      --white: #ffffff;
+      --bg:         #08080f;
+      --surface:    #0f0f1c;
+      --card:       #13131f;
+      --card-hover: #1a1a2e;
+      --border:     #1e1e32;
+      --border-muted: #161626;
+      --accent:     #0ea5e9;
+      --accent2:    #818cf8;
+      --text:       #f1f5f9;
+      --muted:      #64748b;
+      --muted2:     #475569;
+      --tag-bg:     rgba(14, 165, 233, 0.08);
+      --tag-border: rgba(14, 165, 233, 0.2);
+      --tag-color:  #38bdf8;
+    }
+
+    html {
+      background-color: var(--bg);
+      scroll-behavior: smooth;
     }
 
     body {
-      background-color: var(--theme-bg);
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
+    /* Dot grid background */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    ::selection {
+      background: var(--accent);
+      color: white;
+    }
+
+    /* ─── Gradient text ─── */
+    .gradient-text {
+      background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ─── Cards ─── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      background: var(--card-hover);
+      border-color: rgba(14, 165, 233, 0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 48px rgba(14, 165, 233, 0.1);
+    }
+
+    /* ─── Buttons ─── */
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: white;
+      padding: 0.75rem 1.75rem;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      letter-spacing: 0.01em;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.88;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(14, 165, 233, 0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      padding: 0.75rem 1.75rem;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* ─── Tags ─── */
+    .tag {
+      font-size: 0.7rem;
+      padding: 0.25rem 0.625rem;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-weight: 600;
+      background: var(--tag-bg);
+      color: var(--tag-color);
+      border: 1px solid var(--tag-border);
+    }
+
+    /* ─── PIX floating button ─── */
     .pix-button {
       position: fixed;
       bottom: 2rem;
-      left: 2rem; /* Movido para a esquerda para não cobrir a Mandi Tecnologia */
-      background: var(--white);
-      border: 4px solid black;
-      padding: 1rem;
+      left: 2rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.875rem 1.25rem;
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.625rem;
       text-decoration: none;
-      color: black;
-      font-weight: 900;
-      text-transform: uppercase;
-      box-shadow: 8px 8px 0px 0px rgba(0,0,0,1);
-      transition: all 0.2s;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.8rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+      transition: all 0.3s ease;
       z-index: 40;
     }
 
     .pix-button:hover {
-      transform: translate(4px, 4px);
-      box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
-      background-color: var(--theme-accent);
-      color: white;
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 16px 40px rgba(14, 165, 233, 0.25);
     }
+
+    /* ─── Section divider ─── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--border), transparent);
+      margin: 4rem 0;
+    }
+
+    /* ─── Scrollbar ─── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--muted2); }
   </style>
 </head>
-<body class="text-black min-h-screen flex flex-col font-sans selection:bg-black selection:text-white">
-  
-  <nav class="border-b-8 border-black p-6 flex justify-between items-center bg-white sticky top-0 z-50">
-    <a href="/" class="text-3xl font-black uppercase tracking-tighter hover:italic transition-all">
-      Denilson Oliveira
-    </a>
-    <div class="flex gap-8">
-      <a href="/about" class="text-xl font-black uppercase hover:underline underline-offset-8">Sobre</a>
-      <a href="/projects" class="text-xl font-black uppercase hover:underline underline-offset-8">Projetos</a>
+<body>
+
+  <!-- Navigation -->
+  <nav style="background: rgba(8,8,15,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 50;">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="/" style="text-decoration: none; display: flex; align-items: center; gap: 0.5rem;">
+        <span class="gradient-text" style="font-weight: 900; font-size: 1.15rem; letter-spacing: -0.02em;">Denilson</span>
+        <span style="color: var(--muted); font-weight: 500; font-size: 1rem;">Oliveira</span>
+      </a>
+      <div style="display: flex; align-items: center; gap: 2rem;">
+        {navLinks.map(link => (
+          <a href={link.href} style="color: var(--muted); text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: color 0.2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">{link.label}</a>
+        ))}
+        <a href="https://github.com/denilsude" target="_blank" style="color: var(--muted); text-decoration: none; font-size: 1.1rem; transition: color 0.2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">
+          <i class="fa-brands fa-github"></i>
+        </a>
+      </div>
     </div>
   </nav>
 
-  <div class="flex-grow">
+  <!-- Page content -->
+  <div style="flex: 1;">
     <slot />
   </div>
 
+  <!-- PIX button -->
   <a href="#pix-modal" class="pix-button">
-    <i class="fa-solid fa-qrcode text-2xl"></i>
-    <span class="font-black uppercase">Apoie com PIX</span>
+    <i class="fa-solid fa-qrcode" style="font-size: 1rem;"></i>
+    <span>Apoie com PIX</span>
   </a>
 
-  <footer class="border-t-8 border-black p-12 bg-black text-white mt-12">
-    <div class="flex flex-col md:flex-row justify-between items-center gap-8 max-w-7xl mx-auto w-full">
-      
-      <div class="flex gap-8 text-4xl">
+  <!-- Footer -->
+  <footer style="margin-top: 5rem; border-top: 1px solid var(--border); background: var(--surface);">
+    <div class="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row justify-between items-center gap-6">
+
+      <div>
+        <p class="gradient-text" style="font-weight: 900; font-size: 1.1rem; letter-spacing: -0.01em;">Denilson Oliveira</p>
+        <p style="color: var(--muted); font-size: 0.75rem; margin-top: 0.25rem;">Full Stack Architect & Developer</p>
+      </div>
+
+      <div style="display: flex; gap: 1.5rem; font-size: 1.25rem;">
         {socialLinks.map(link => (
-          <a href={link.url} target="_blank" aria-label={link.name} class="hover:text-sky-400 transition-colors">
-            <i class={`fa-brands ${link.icon === 'fa-code' ? 'fa-solid fa-code' : link.icon}`}></i>
+          <a href={link.url} target="_blank" aria-label={link.name}
+             style="color: var(--muted2); text-decoration: none; transition: color 0.2s;"
+             onmouseover="this.style.color='#38bdf8'" onmouseout="this.style.color='var(--muted2)'">
+            <i class={link.icon === 'fa-code' ? 'fa-solid fa-code' : `fa-brands ${link.icon}`}></i>
           </a>
         ))}
       </div>
 
-      <div class="text-center">
-        <p class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">Architecture & Code</p>
-        <div class="font-black uppercase border-2 border-white px-6 py-2 bg-white text-black shadow-[6px_6px_0px_0px_rgba(255,255,255,0.3)]">
-          Powered by Denilson Oliveira
-        </div>
-      </div>
-
-      <div class="text-right flex flex-col items-end">
-        <span class="text-xs font-bold uppercase opacity-60 mb-1">Operado por:</span>
-        <a href="https://manditecnologia.com.br/" target="_blank" class="text-2xl font-black hover:text-sky-400 uppercase tracking-tighter transition-colors">
+      <div style="text-align: right;">
+        <span style="color: var(--muted2); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em;">Operado por</span>
+        <a href="https://manditecnologia.com.br/" target="_blank"
+           style="display: block; color: var(--muted); font-weight: 700; font-size: 0.875rem; text-decoration: none; margin-top: 0.25rem; transition: color 0.2s;"
+           onmouseover="this.style.color='#38bdf8'" onmouseout="this.style.color='var(--muted)'">
           Mandi Tecnologia
         </a>
       </div>
-      
+
+    </div>
+    <div style="border-top: 1px solid var(--border-muted); padding: 1rem; text-align: center;">
+      <p style="color: var(--muted2); font-size: 0.7rem;">© 2025 Denilson Oliveira. Todos os direitos reservados.</p>
     </div>
   </footer>
 
